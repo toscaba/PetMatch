@@ -59,6 +59,6 @@ ohne ihre Änderungen ständig manuell austauschen zu müssen.
 6. Pull Request (PR) direkt in der Weboberfläche anlegen
 
 ### Contribution
-Repo und ersten Branch anlegen: Tosca
-1. Fassung Readme: Tosca
-Branch anlegen, Änderungen und PR: Melanie
+1. Repo und ersten Branch anlegen: Tosca
+2. Erste Fassung Readme: Tosca
+3. Branch anlegen, Änderungen und PR: Melanie
