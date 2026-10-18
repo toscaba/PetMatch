@@ -31,8 +31,7 @@ ohne ihre Änderungen ständig manuell austauschen zu müssen.
 - **Push:** Lokale Commits zu einem entfernten Repository hochladen.
 - **Pull:** Änderungen aus einem entfernten Repository abrufen.
 - **Merge:** Änderungen aus verschiedenen Branches zusammenführen.
-- **Pull Request:** Vorschlag, Änderungen zu prüfen und in einen
-  anderen Branch zu übernehmen.
+- **Pull Request:** Vorschlag, Änderungen zu prüfen und in einen anderen Branch zu übernehmen.
 
 
 ## 3. Die wichtigsten Git-Befehle
@@ -57,3 +56,9 @@ ohne ihre Änderungen ständig manuell austauschen zu müssen.
 3. Mit `git add` die gewünschten Dateien vorbereiten.
 4. Mit `git commit` die Änderungen speichern.
 5. Mit `git push` die Commits zu GitHub hochladen.
+6. Pull Request (PR) direkt in der Weboberfläche anlegen
+
+### Contribution
+1. Repo und ersten Branch anlegen: Tosca
+2. Erste Fassung Readme: Tosca
+3. Branch anlegen, Änderungen und PR: Melanie
