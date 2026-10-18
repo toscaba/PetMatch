@@ -1,0 +1,10 @@
+
+# macOS-Dateien
+.DS_Store
+
+# Temporäre Dateien
+*.tmp
+*.log
+
+# Editor-Einstellungen
+.vscode/
