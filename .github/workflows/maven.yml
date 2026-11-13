@@ -1,12 +1,10 @@
 
 name: PetMatch Java CI
 
-# Automatischer Start bei Push und Pull Request
+# Automatischer Start bei Pushes auf allen Branches
+# und bei Pull Requests auf main
 on:
   push:
-    branches:
-      - main
-      - uebung4-tdd-implementierung
   pull_request:
     branches:
       - main
@@ -20,7 +18,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Java 17 installieren
+      # Java 17 einrichten
       - name: Java einrichten
         uses: actions/setup-java@v4
         with:
@@ -29,7 +27,7 @@ jobs:
           cache: maven
           cache-dependency-path: petmatch/pom.xml
 
-      # Maven-Projekt bauen und JUnit-Tests ausführen
+      # Maven-Projekt bauen und Tests ausführen
       - name: Maven Build und Tests
         working-directory: ./petmatch
         run: mvn --batch-mode clean verify
