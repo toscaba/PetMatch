@@ -8,5 +8,7 @@
 
 # Editor-Einstellungen
 .vscode/
+.idea/
+*.iml
 
 petmatch/target/

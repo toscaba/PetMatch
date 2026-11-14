@@ -1,5 +1,5 @@
 
-package de.petmatch;
+package de.petmatch.tierverwaltung;
 
 public class Tier {
 

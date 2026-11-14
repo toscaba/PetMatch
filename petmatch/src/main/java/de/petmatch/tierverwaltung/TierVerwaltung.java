@@ -1,5 +1,5 @@
 
-package de.petmatch;
+package de.petmatch.tierverwaltung;
 
 import java.util.List;
 

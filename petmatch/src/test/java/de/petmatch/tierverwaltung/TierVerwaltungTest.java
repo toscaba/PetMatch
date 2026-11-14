@@ -1,5 +1,5 @@
 
-package de.petmatch;
+package de.petmatch.tierverwaltung;
 
 import org.junit.jupiter.api.Test;
 import java.util.List;
