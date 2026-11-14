@@ -1,0 +1,19 @@
+JUnit testing metrics,Sa., 14 Nov. 2026 21:39:38 MEZ
+Class,JTA,JTM
+de.petmatch.App,0,0
+de.petmatch.AppTest,0,0
+de.petmatch.Tier,0,0
+de.petmatch.TierStatus,0,0
+de.petmatch.TierTest,0,0
+de.petmatch.TierVerwaltung,0,0
+de.petmatch.TierVerwaltungTest,0,0
+
+Package,JTA,JTC,JTM
+de.petmatch,0,0,0
+
+Module,JTA,JTC,JTM
+petmatch,0,0,0
+
+Project,JTA,JTC,JTM
+project,0,0,0
+

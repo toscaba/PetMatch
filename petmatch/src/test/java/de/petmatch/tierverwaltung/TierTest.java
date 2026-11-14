@@ -228,6 +228,20 @@ class TierTest {
         assertEquals(TierStatus.ZU_VERMITTELN, tier.getStatus());
     }
 
+    // TEST 15: Eine Tierart darf nicht null sein.
+    @Test
+    void testTierartNull() {
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class, () ->
+                        new Tier(
+                                1L, 10L, "Bello", null,
+                                "Labrador", 3, "Freundlich", "bello.jpg"
+                        )
+        );
+
+        assertEquals("Die Tierart darf nicht leer sein.", ex.getMessage());
+    }
+
 
 
 }

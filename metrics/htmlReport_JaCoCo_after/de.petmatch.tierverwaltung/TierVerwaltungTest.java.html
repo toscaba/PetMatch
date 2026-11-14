@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TierVerwaltungTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in petmatch Coverage Results, All in petmatch Coverage Results</a> &gt; <a href="index.source.html" class="el_package">de.petmatch.tierverwaltung</a> &gt; <span class="el_source">TierVerwaltungTest.java</span></div><h1>TierVerwaltungTest.java</h1><pre class="source lang-java linenums">
+package de.petmatch.tierverwaltung;
+
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+<span class="fc" id="L9">class TierVerwaltungTest {</span>
+
+    // TEST 1: Nur verfügbare Tiere werden zurückgegeben.
+    @Test
+    void testVerfuegbareTiereFiltern() {
+
+        // Drei Tierprofile erstellen.
+<span class="fc" id="L16">        Tier hund = new Tier(</span>
+<span class="fc" id="L17">            1L, 10L, &quot;Bello&quot;, &quot;Hund&quot;,</span>
+            &quot;Labrador&quot;, 3, &quot;Freundlich&quot;, &quot;bello.jpg&quot;
+        );
+
+<span class="fc" id="L21">        Tier katze = new Tier(</span>
+<span class="fc" id="L22">            2L, 10L, &quot;Mimi&quot;, &quot;Katze&quot;,</span>
+            &quot;Europäisch Kurzhaar&quot;, 2, &quot;Ruhig&quot;, &quot;mimi.jpg&quot;
+        );
+
+<span class="fc" id="L26">        Tier kaninchen = new Tier(</span>
+<span class="fc" id="L27">            3L, 10L, &quot;Hoppel&quot;, &quot;Kaninchen&quot;,</span>
+            &quot;Zwergkaninchen&quot;, 1, &quot;Verspielt&quot;, &quot;hoppel.jpg&quot;
+        );
+
+        // Die Katze wird reserviert.
+<span class="fc" id="L32">        katze.reservieren();</span>
+
+        // Tierverwaltung mit drei Tieren erstellen.
+<span class="fc" id="L35">        TierVerwaltung verwaltung = new TierVerwaltung(</span>
+<span class="fc" id="L36">            List.of(hund, katze, kaninchen)</span>
+        );
+
+        // Nur verfügbare Tiere abrufen.
+<span class="fc" id="L40">        List&lt;Tier&gt; verfuegbareTiere =</span>
+<span class="fc" id="L41">            verwaltung.getVerfuegbareTiere();</span>
+
+        // Es müssen genau zwei Tiere verfügbar sein.
+<span class="fc" id="L44">        assertEquals(2, verfuegbareTiere.size());</span>
+
+        // Hund und Kaninchen müssen enthalten sein.
+<span class="fc" id="L47">        assertTrue(verfuegbareTiere.contains(hund));</span>
+<span class="fc" id="L48">        assertTrue(verfuegbareTiere.contains(kaninchen));</span>
+
+        // Die reservierte Katze darf nicht enthalten sein.
+<span class="fc" id="L51">        assertFalse(verfuegbareTiere.contains(katze));</span>
+<span class="fc" id="L52">    }</span>
+
+
+    // TEST 2: Eine leere Tierverwaltung gibt
+    // eine leere Liste zurück.
+    @Test
+    void testLeereTierverwaltung() {
+
+<span class="fc" id="L60">        TierVerwaltung verwaltung =</span>
+<span class="fc" id="L61">            new TierVerwaltung(List.of());</span>
+
+<span class="fc" id="L63">        List&lt;Tier&gt; verfuegbareTiere =</span>
+<span class="fc" id="L64">            verwaltung.getVerfuegbareTiere();</span>
+
+<span class="fc" id="L66">        assertTrue(verfuegbareTiere.isEmpty());</span>
+<span class="fc" id="L67">    }</span>
+
+    // TEST 3: Wenn alle Tiere reserviert sind,
+    // dürfen keine verfügbaren Tiere angezeigt werden.
+    @Test
+    void testAlleTiereReserviert() {
+
+<span class="fc" id="L74">        Tier hund = new Tier(</span>
+<span class="fc" id="L75">            1L, 10L, &quot;Bello&quot;, &quot;Hund&quot;,</span>
+            &quot;Labrador&quot;, 3, &quot;Freundlich&quot;, &quot;bello.jpg&quot;
+        );
+
+<span class="fc" id="L79">        Tier katze = new Tier(</span>
+<span class="fc" id="L80">            2L, 10L, &quot;Mimi&quot;, &quot;Katze&quot;,</span>
+            &quot;Europäisch Kurzhaar&quot;, 2, &quot;Ruhig&quot;, &quot;mimi.jpg&quot;
+        );
+
+        // Beide Tiere reservieren.
+<span class="fc" id="L85">        hund.reservieren();</span>
+<span class="fc" id="L86">        katze.reservieren();</span>
+
+<span class="fc" id="L88">        TierVerwaltung verwaltung =</span>
+<span class="fc" id="L89">            new TierVerwaltung(List.of(hund, katze));</span>
+
+        // Es darf kein verfügbares Tier geben.
+<span class="fc" id="L92">        assertTrue(</span>
+<span class="fc" id="L93">            verwaltung.getVerfuegbareTiere().isEmpty()</span>
+        );
+<span class="fc" id="L95">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
