@@ -1,0 +1,66 @@
+Lines of code metrics,Sa., 14 Nov. 2026 21:40:51 MEZ
+Method,CLOC,JLOC,LOC,NCLOC,RLOC
+de.petmatch.App.main(String[]),0,0,3,3,"37,50%"
+de.petmatch.AppTest.shouldAnswerWithTrue(),3,3,7,4,"58,33%"
+"de.petmatch.Tier.Tier(Long, Long, String, String, String, int, String, ...)",4,0,32,28,"31,37%"
+de.petmatch.Tier.adoptieren(),4,0,11,7,"10,78%"
+de.petmatch.Tier.getAlter(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getCharakter(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getFoto(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getId(),1,0,4,3,"3,92%"
+de.petmatch.Tier.getName(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getNutzerId(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getRasse(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getStatus(),0,0,3,3,"2,94%"
+de.petmatch.Tier.getTierart(),0,0,3,3,"2,94%"
+de.petmatch.Tier.nichtAdoptiert(),2,0,10,8,"9,80%"
+de.petmatch.Tier.reservieren(),1,0,9,8,"8,82%"
+de.petmatch.TierTest.testAdoptionOhneReservierung(),5,0,17,12,"9,60%"
+de.petmatch.TierTest.testAlterNull(),1,0,9,8,"5,08%"
+de.petmatch.TierTest.testAnfangsstatus(),1,0,9,8,"5,08%"
+de.petmatch.TierTest.testDoppelteReservierung(),5,0,17,12,"9,60%"
+de.petmatch.TierTest.testLeereTierart(),1,0,10,9,"5,65%"
+de.petmatch.TierTest.testLeererName(),1,0,10,9,"5,65%"
+de.petmatch.TierTest.testNameNull(),1,0,10,9,"5,65%"
+de.petmatch.TierTest.testNegativesAlter(),1,0,10,9,"5,65%"
+de.petmatch.TierTest.testNichtAdoptiertOhneReservierung(),5,0,17,12,"9,60%"
+de.petmatch.TierTest.testTierAdoptieren(),3,0,15,12,"8,47%"
+de.petmatch.TierTest.testTierErstellen(),1,0,16,15,"9,04%"
+de.petmatch.TierTest.testTierNichtAdoptiert(),5,0,16,11,"9,04%"
+de.petmatch.TierTest.testTierReservieren(),1,0,10,9,"5,65%"
+de.petmatch.TierTest.testVermittlerZuordnung(),1,0,9,8,"5,08%"
+de.petmatch.TierVerwaltung.TierVerwaltung(List<Tier>),1,0,4,3,"25,00%"
+de.petmatch.TierVerwaltung.getVerfuegbareTiere(),1,0,8,7,"50,00%"
+de.petmatch.TierVerwaltungTest.testAlleTiereReserviert(),4,0,22,18,"32,84%"
+de.petmatch.TierVerwaltungTest.testLeereTierverwaltung(),2,0,10,8,"14,93%"
+de.petmatch.TierVerwaltungTest.testVerfuegbareTiereFiltern(),8,0,33,25,"49,25%"
+
+Class,CLOC,JLOC,LOC
+de.petmatch.App,3,3,8
+de.petmatch.AppTest,6,6,12
+de.petmatch.Tier,13,0,102
+de.petmatch.TierStatus,1,0,5
+de.petmatch.TierTest,32,0,177
+de.petmatch.TierVerwaltung,3,0,16
+de.petmatch.TierVerwaltungTest,14,0,67
+
+Package,CLOC,CLOC(rec),JLOC,JLOC(rec),LOC,LOC(rec),LOCp,LOCp(rec),LOCt,LOCt(rec),NCLOC,NCLOCp,NCLOCp(rec),NCLOCt,NCLOCt(rec)
+,n/a,63,n/a,9,n/a,402,n/a,136,n/a,266,n/a,n/a,119,n/a,220
+de,n/a,63,n/a,9,n/a,402,n/a,136,n/a,266,n/a,n/a,119,n/a,220
+de.petmatch,0,63,9,9,402,402,136,136,266,266,339,119,119,220,220
+
+Module,JLOC,L(CSS),L(Groovy),L(HTML),L(J),L(JS),L(KT),L(XML),LOC,LOCp,LOCt,NCLOC,NCLOCp,NCLOCt
+petmatch,9,0,0,0,402,0,0,84,486,136,266,414,116,214
+
+FileType,LOC,NCLOC
+.gitignore (GitIgnore),8,8
+Files supported via TextMate bundles,0,0
+Java,402,330
+Markdown,146,146
+Maven project configuration,0,0
+XML,84,84
+YAML,27,27
+
+Project,CLOC,JLOC,L(CSS),L(Groovy),L(HTML),L(J),L(JS),L(KT),L(XML),LOC,LOCp,LOCt,NCLOC,NCLOCp,NCLOCt
+project,86,9,0,0,0,402,0,0,84,667,136,266,595,116,214
+
