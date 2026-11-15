@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>PetMatch – Verwaltung</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav><a href="index.html">Zur Startseite</a></nav>
+  <h1>PetMatch – Verwaltung</h1>
+
+  <h2>Neues Tier</h2>
+  <form id="tierFormular">
+    <input name="name" placeholder="Name" required>
+    <input name="tierart" placeholder="Tierart" required>
+    <input name="rasse" placeholder="Rasse">
+    <input name="alter" type="number" min="0" placeholder="Alter" required>
+    <input name="charakter" placeholder="Charakter">
+    <button type="submit">Anlegen</button>
+  </form>
+
+  <h2>Tiere</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Tierart</th><th>Rasse</th><th>Alter</th>
+        <th>Charakter</th><th>Status</th><th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody id="tierListe"></tbody>
+  </table>
+
+  <script src="admin.js"></script>
+</body>
+</html>

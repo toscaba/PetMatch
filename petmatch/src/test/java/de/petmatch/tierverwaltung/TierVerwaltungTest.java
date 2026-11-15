@@ -94,4 +94,40 @@ class TierVerwaltungTest {
         );
     }
 
+    // TEST 4: Vermittelte und gelöschte Tiere
+    // sind nicht verfügbar.
+    @Test
+    void testVermittelteUndGeloeschteTiere() {
+
+        Tier hund = new Tier(
+            1L, 10L, "Bello", "Hund",
+            "Labrador", 3, "Freundlich", "bello.jpg"
+        );
+
+        Tier katze = new Tier(
+            2L, 10L, "Mimi", "Katze",
+            "Europäisch Kurzhaar", 2, "Ruhig", "mimi.jpg"
+        );
+
+        Tier kaninchen = new Tier(
+            3L, 10L, "Hoppel", "Kaninchen",
+            "Zwergkaninchen", 1, "Verspielt", "hoppel.jpg"
+        );
+
+        // Der Hund wird vermittelt, die Katze gelöscht.
+        hund.reservieren();
+        hund.adoptieren();
+        katze.loeschen();
+
+        TierVerwaltung verwaltung = new TierVerwaltung(
+            List.of(hund, katze, kaninchen)
+        );
+
+        // Nur das Kaninchen ist noch verfügbar.
+        assertEquals(
+            List.of(kaninchen),
+            verwaltung.getVerfuegbareTiere()
+        );
+    }
+
 }
