@@ -6,12 +6,12 @@ public class Tier {
     // Attribute entsprechend dem Domänenmodell
     private final Long id;
     private final Long nutzerId;
-    private final String name;
-    private final String tierart;
-    private final String rasse;
-    private final int alter;
-    private final String charakter;
-    private final String foto;
+    private String name;
+    private String tierart;
+    private String rasse;
+    private int alter;
+    private String charakter;
+    private String foto;
 
     private TierStatus status;
 
@@ -20,7 +20,25 @@ public class Tier {
                 String tierart, String rasse, int alter,
                 String charakter, String foto) {
 
-        // Validierung der Eingaben
+        pruefeEingaben(name, tierart, alter);
+
+        // Attribute zuweisen
+        this.id = id;
+        this.nutzerId = nutzerId;
+        this.name = name;
+        this.tierart = tierart;
+        this.rasse = rasse;
+        this.alter = alter;
+        this.charakter = charakter;
+        this.foto = foto;
+
+        // Jedes neue Tier ist zunächst verfügbar
+        this.status = TierStatus.ZU_VERMITTELN;
+    }
+
+    // Validierung der Eingaben, genutzt von Konstruktor und aendern()
+    private static void pruefeEingaben(String name, String tierart, int alter) {
+
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(
                 "Der Tiername darf nicht leer sein."
@@ -38,19 +56,6 @@ public class Tier {
                 "Das Alter darf nicht negativ sein."
             );
         }
-
-        // Attribute zuweisen
-        this.id = id;
-        this.nutzerId = nutzerId;
-        this.name = name;
-        this.tierart = tierart;
-        this.rasse = rasse;
-        this.alter = alter;
-        this.charakter = charakter;
-        this.foto = foto;
-
-        // Jedes neue Tier ist zunächst verfügbar
-        this.status = TierStatus.ZU_VERMITTELN;
     }
 
     // Getter für die JUnit-Tests
@@ -96,7 +101,7 @@ public class Tier {
 
         if (status != TierStatus.ZU_VERMITTELN) {
             throw new IllegalStateException(
-                "Das Tier ist bereits reserviert."
+                "Das Tier ist nicht verfügbar."
             );
         }
 
@@ -106,7 +111,7 @@ public class Tier {
 
     // Gibt ein reserviertes Tier wieder zur Vermittlung frei,
     // wenn es nicht adoptiert wurde.
-    public void nichtAdoptiert() {
+    public void freigeben() {
 
         if (status != TierStatus.RESERVIERT) {
             throw new IllegalStateException(
@@ -118,7 +123,7 @@ public class Tier {
     }
 
 
-    // Prüft, ob ein Tier adoptiert werden darf.
+    // Ein reserviertes Tier wird adoptiert und ist damit vermittelt.
     public void adoptieren() {
 
         if (status != TierStatus.RESERVIERT) {
@@ -127,9 +132,35 @@ public class Tier {
             );
         }
 
-        // Die Adoption ist fachlich zulässig.
-        // Das Entfernen des Tierprofils und der zugehörigen
-        // Terminanfragen erfolgt später über einen Service.
+        status = TierStatus.VERMITTELT;
+    }
+
+
+    // Löscht das Inserat. Ein gelöschtes Tier kann nicht erneut gelöscht werden.
+    public void loeschen() {
+
+        if (status == TierStatus.GELOESCHT) {
+            throw new IllegalStateException(
+                "Das Tier ist bereits gelöscht."
+            );
+        }
+
+        status = TierStatus.GELOESCHT;
+    }
+
+
+    // Ändert das Tierprofil. Es gelten dieselben Regeln wie beim Erstellen.
+    public void aendern(String name, String tierart, String rasse,
+                        int alter, String charakter, String foto) {
+
+        pruefeEingaben(name, tierart, alter);
+
+        this.name = name;
+        this.tierart = tierart;
+        this.rasse = rasse;
+        this.alter = alter;
+        this.charakter = charakter;
+        this.foto = foto;
     }
 
 

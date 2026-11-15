@@ -142,7 +142,7 @@ class TierTest {
     // TEST 11: Ein nicht adoptiertes Tier wird
     // wieder zur Vermittlung freigegeben.
     @Test
-    void testTierNichtAdoptiert() {
+    void testTierFreigeben() {
 
         Tier tier = new Tier(
             1L, 10L, "Bello", "Hund",
@@ -155,7 +155,7 @@ class TierTest {
         assertEquals(TierStatus.RESERVIERT, tier.getStatus());
 
         // Interessent entscheidet sich gegen Adoption.
-        tier.nichtAdoptiert();
+        tier.freigeben();
 
         // Tier ist wieder verfügbar.
         assertEquals(TierStatus.ZU_VERMITTELN, tier.getStatus());
@@ -163,9 +163,9 @@ class TierTest {
 
 
     // TEST 12: Ein nicht reserviertes Tier darf
-    // nicht als "nicht adoptiert" freigegeben werden.
+    // nicht freigegeben werden.
     @Test
-    void testNichtAdoptiertOhneReservierung() {
+    void testFreigebenOhneReservierung() {
 
         Tier tier = new Tier(
             1L, 10L, "Bello", "Hund",
@@ -177,7 +177,7 @@ class TierTest {
 
         // Die Freigabe muss verhindert werden.
         assertThrows(IllegalStateException.class, () -> {
-            tier.nichtAdoptiert();
+            tier.freigeben();
         });
 
         // Der Status darf sich nicht verändern.
@@ -203,6 +203,9 @@ class TierTest {
         assertDoesNotThrow(() -> {
             tier.adoptieren();
         });
+
+        // Das Tier ist jetzt vermittelt.
+        assertEquals(TierStatus.VERMITTELT, tier.getStatus());
     }
 
 
@@ -243,5 +246,104 @@ class TierTest {
     }
 
 
+    // TEST 16: Ein vermitteltes Tier kann weder reserviert,
+    // freigegeben noch erneut adoptiert werden.
+    @Test
+    void testVermitteltesTier() {
+
+        Tier tier = neuesTier();
+        tier.reservieren();
+        tier.adoptieren();
+
+        assertThrows(IllegalStateException.class, tier::reservieren);
+        assertThrows(IllegalStateException.class, tier::freigeben);
+        assertThrows(IllegalStateException.class, tier::adoptieren);
+
+        // Der Status bleibt unverändert.
+        assertEquals(TierStatus.VERMITTELT, tier.getStatus());
+    }
+
+
+    // TEST 17: Ein Tier kann aus jedem Status heraus gelöscht werden.
+    @Test
+    void testTierLoeschen() {
+
+        Tier verfuegbar = neuesTier();
+
+        Tier reserviert = neuesTier();
+        reserviert.reservieren();
+
+        Tier vermittelt = neuesTier();
+        vermittelt.reservieren();
+        vermittelt.adoptieren();
+
+        verfuegbar.loeschen();
+        reserviert.loeschen();
+        vermittelt.loeschen();
+
+        assertEquals(TierStatus.GELOESCHT, verfuegbar.getStatus());
+        assertEquals(TierStatus.GELOESCHT, reserviert.getStatus());
+        assertEquals(TierStatus.GELOESCHT, vermittelt.getStatus());
+    }
+
+
+    // TEST 18: Ein gelöschtes Tier kann weder erneut gelöscht
+    // noch reserviert werden.
+    @Test
+    void testGeloeschtesTier() {
+
+        Tier tier = neuesTier();
+        tier.loeschen();
+
+        assertThrows(IllegalStateException.class, tier::loeschen);
+        assertThrows(IllegalStateException.class, tier::reservieren);
+
+        assertEquals(TierStatus.GELOESCHT, tier.getStatus());
+    }
+
+
+    // TEST 19: Ein Tierprofil kann geändert werden.
+    @Test
+    void testTierAendern() {
+
+        Tier tier = neuesTier();
+
+        tier.aendern("Rocky", "Hund", "Boxer", 5, "Verspielt", "rocky.jpg");
+
+        assertEquals("Rocky", tier.getName());
+        assertEquals("Hund", tier.getTierart());
+        assertEquals("Boxer", tier.getRasse());
+        assertEquals(5, tier.getAlter());
+        assertEquals("Verspielt", tier.getCharakter());
+        assertEquals("rocky.jpg", tier.getFoto());
+
+        // Der Status ändert sich dabei nicht.
+        assertEquals(TierStatus.ZU_VERMITTELN, tier.getStatus());
+    }
+
+
+    // TEST 20: Ungültige Änderungen werden abgelehnt,
+    // das Tierprofil bleibt unverändert.
+    @Test
+    void testTierAendernUngueltig() {
+
+        Tier tier = neuesTier();
+
+        assertThrows(IllegalArgumentException.class, () ->
+            tier.aendern("", "Hund", "Boxer", 5, "Verspielt", "rocky.jpg")
+        );
+
+        assertEquals("Bello", tier.getName());
+        assertEquals("Labrador", tier.getRasse());
+    }
+
+
+    // Hilfsmethode: Erstellt ein gültiges Standard-Tier.
+    private Tier neuesTier() {
+        return new Tier(
+            1L, 10L, "Bello", "Hund",
+            "Labrador", 3, "Freundlich", "bello.jpg"
+        );
+    }
 
 }
