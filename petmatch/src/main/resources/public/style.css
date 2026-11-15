@@ -1,0 +1,63 @@
+body {
+  font-family: sans-serif;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: #222;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+input,
+button {
+  padding: 0.4rem 0.6rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+td button {
+  margin-right: 0.3rem;
+}
+
+nav {
+  text-align: right;
+}
+
+.karten {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.karte {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.karte h2 {
+  margin-top: 0;
+}
+
+.karte p {
+  margin: 0.3rem 0;
+}
