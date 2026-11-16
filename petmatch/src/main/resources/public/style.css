@@ -175,3 +175,24 @@ td button:last-child:hover {
   margin: 0.3rem 0;
   color: var(--text-leise);
 }
+/* ===== Suchleiste auf der Startseite ===== */
+.suche {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--flaeche);
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--gruen);
+  box-shadow: 0 0 0 3px var(--gruen-hell);
+}
